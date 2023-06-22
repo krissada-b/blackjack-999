@@ -21,6 +21,7 @@ function Game() {
   var timer: number;
 
 	const [canPlay, setCanPlay] = useState(true);
+	const [turn,setTurn] = useState(1)
 
 	const [yourCoin, setYourCoin] = useState(100);
   const [dealerCoin, setDealerCoin] = useState(100);
@@ -177,6 +178,10 @@ function Game() {
 		<>
 			<div className="w-screen h-screen flex flex-col justify-center">
 
+				<div className="flex flex-row items-center justify-center mb-10">
+					<p className="text-5xl">Turn : {turn}</p>
+				</div>
+
 				{/* Dealer and Player Hand */}
 				<div className="flex flex-row items-center justify-center">
 					{winner != '' ? <h1 className="text-primary text-6xl absolute -mt-20  z-50 animate-getAlertWinner">{winner} {winner == 'tie' ? '' : 'win'} {winner == 'you' ? ':)' : ':('}</h1> : null}
@@ -198,6 +203,7 @@ function Game() {
 				</div>
 
 
+
 				{/* Game Controls */}
 				<div className="flex flex-row justify-center">
 					<div className="mt-20">
@@ -207,8 +213,21 @@ function Game() {
 								: ''}
 						</div>
 
-						{winner != '' ? (
-							<div>
+						{winner != '' ?
+							(
+
+							<div className="flex">
+								<button onClick={() => {
+									setDealerDeck([]);
+									setYourDeck([]);
+									setDealerSum(0);
+									setYourSum(0);
+									setCanPlay(true);
+									setWinner('');
+									setTurn(turn + 1)
+								}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+									Continue?
+								</button> <br />
 								<button onClick={() => {
 									setDealerDeck([]);
 									setYourDeck([]);
@@ -218,10 +237,13 @@ function Game() {
 									setDealerCoin(100)
 									setCanPlay(true);
 									setWinner('');
-								}} className="text-2xl w-64 h-14 rounded-md bg-primary text-bg">
-									Play again
-								</button> <br />
-							</div>) : (
+									setTurn(1)
+								}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+									Restart Game
+								</button>
+								</div>
+							) :
+							(
 								<div >
 									<button onClick={hit} className={`text-3xl w-44 h-14 rounded-md ${canPlay && yourSum < 21 ? 'bg-primary text-bg' : 'bg-shadow text-secondary'} transition-colors`}>hit</button>
 									<button onClick={stay} className={`text-3xl w-20 h-14 ${canPlay && yourSum <= 21 ? 'bg-b-secondary text-bg' : 'bg-shadow text-secondary'} transition-colors rounded-md ml-4`}>stay</button>
