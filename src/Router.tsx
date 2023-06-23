@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Game from "./pages/Game";
-import { Help } from "./pages/Help";
-import { Home } from "./pages/Home";
+import  Help  from "./pages/Help";
+import  Home  from "./pages/Home";
 
-export function Router() {
+const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -12,3 +12,4 @@ export function Router() {
     </Routes>
   )
 }
+export default Router

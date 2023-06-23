@@ -16,19 +16,19 @@ export class Card {
 
   constructor() {
     const randomValue = Math.floor(Math.random() * 13) + 1;
-    
+
     let formatedValue = randomValue > 10 ? 10 : randomValue;
     let letter: string | number = formatedValue;
 
     if (randomValue === 1) {
       letter = 'A';
-    } 
-    else if (randomValue === 12) {
-      letter = 'Q';
+    }
+    else if (randomValue === 11) {
+      letter = 'J';
     }
     else if (randomValue === 12) {
       letter = 'Q';
-    }    
+    }
     else if (randomValue === 13) {
       letter = 'K';
     }

@@ -6,7 +6,7 @@ import { Card } from "../entities/card";
 import DealerHand from "../component/dealerHand";
 import PlayerHand from "../component/playerHand";
 
-function Game() {
+const Game = () => {
 
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -25,7 +25,6 @@ function Game() {
 
 	const [yourCoin, setYourCoin] = useState(100);
   const [dealerCoin, setDealerCoin] = useState(100);
-
 
   const cloneDeck = [...dealerDeck];
   const hiddenScore = cloneDeck;
@@ -107,7 +106,7 @@ function Game() {
     }
   }
 
-  function dealerPlay() {
+  const dealerPlay = () => {
 		if (yourSum === 21 && dealerSum < 21) {
 			if (!dealerHit()) {
 				setWinner("you")
@@ -147,7 +146,7 @@ function Game() {
     }
   }
 
-  function buildDeck(deck: Card[]): number {
+  const buildDeck = (deck: Card[]): number => {
     let sum = 0;
 
     for (let index = 0; index < 2; index++) {
@@ -158,7 +157,7 @@ function Game() {
     return sum;
   }
 
-  function dealerHit() {
+  const dealerHit = () => {
     if (dealerSum < 16) {
       const card = new Card();
       const newDeck = dealerDeck;
@@ -172,7 +171,75 @@ function Game() {
     } else {
       return false;
     }
-  }
+	}
+
+	const renderButton = () => {
+		if (winner != '') {
+			if (dealerCoin != 0 || yourCoin != 0) {
+				return (
+					<>
+						<div className="flex" >
+							<button onClick={() => {
+								setDealerDeck([]);
+								setYourDeck([]);
+								setDealerSum(0);
+								setYourSum(0);
+								setCanPlay(true);
+								setWinner('');
+								setTurn(turn + 1)
+							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+								Continue?
+							</button> <br />
+							<button onClick={() => {
+								setDealerDeck([]);
+								setYourDeck([]);
+								setDealerSum(0);
+								setYourSum(0);
+								setYourCoin(100)
+								setDealerCoin(100)
+								setCanPlay(true);
+								setWinner('');
+								setTurn(1)
+							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+								Restart Game
+							</button>
+						</div>
+					</>
+				)
+			}
+			else {
+				return (
+					<>
+						<div className="flex" >
+							<button onClick={() => {
+								setDealerDeck([]);
+								setYourDeck([]);
+								setDealerSum(0);
+								setYourSum(0);
+								setYourCoin(100)
+								setDealerCoin(100)
+								setCanPlay(true);
+								setWinner('');
+								setTurn(1)
+							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+								Restart Game
+							</button>
+						</div>
+					</>
+				)
+			}
+		}
+		else {
+			return (
+				<>
+					<div >
+						<button onClick={hit} className={`text-3xl w-44 h-14 rounded-md ${canPlay && yourSum < 21 ? 'bg-primary text-bg' : 'bg-shadow text-secondary'} transition-colors`}>hit</button>
+						<button onClick={stay} className={`text-3xl w-20 h-14 ${canPlay && yourSum <= 21 ? 'bg-b-secondary text-bg' : 'bg-shadow text-secondary'} transition-colors rounded-md ml-4`}>stay</button>
+					</div>
+				</>
+			)
+		}
+	}
 
 	return (
 		<>
@@ -189,7 +256,6 @@ function Game() {
 					<PlayerHand deck={yourDeck}  winner={winner} playerSum={yourSum} role="playerHand" />
 				</div>
 
-
 				{/* Coin */}
 				<div className="flex flex-row items-center justify-center gap-44 mt-20">
 					<div className="flex flex-col">
@@ -202,8 +268,6 @@ function Game() {
 					</div>
 				</div>
 
-
-
 				{/* Game Controls */}
 				<div className="flex flex-row justify-center">
 					<div className="mt-20">
@@ -213,42 +277,7 @@ function Game() {
 								: ''}
 						</div>
 
-						{winner != '' ?
-							(
-
-							<div className="flex">
-								<button onClick={() => {
-									setDealerDeck([]);
-									setYourDeck([]);
-									setDealerSum(0);
-									setYourSum(0);
-									setCanPlay(true);
-									setWinner('');
-									setTurn(turn + 1)
-								}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
-									Continue?
-								</button> <br />
-								<button onClick={() => {
-									setDealerDeck([]);
-									setYourDeck([]);
-									setDealerSum(0);
-									setYourSum(0);
-									setYourCoin(100)
-									setDealerCoin(100)
-									setCanPlay(true);
-									setWinner('');
-									setTurn(1)
-								}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
-									Restart Game
-								</button>
-								</div>
-							) :
-							(
-								<div >
-									<button onClick={hit} className={`text-3xl w-44 h-14 rounded-md ${canPlay && yourSum < 21 ? 'bg-primary text-bg' : 'bg-shadow text-secondary'} transition-colors`}>hit</button>
-									<button onClick={stay} className={`text-3xl w-20 h-14 ${canPlay && yourSum <= 21 ? 'bg-b-secondary text-bg' : 'bg-shadow text-secondary'} transition-colors rounded-md ml-4`}>stay</button>
-							</div>
-						)}
+						{renderButton()}
 						<Link className="text-2xl text-secondary underline mt-8" to={"/help"}>how to play</Link>
 					</div>
 				</div>
