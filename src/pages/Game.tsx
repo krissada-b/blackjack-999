@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "../entities/card";
-
+import coinIcon from "../assets/coin.svg"
 import DealerHand from "../component/dealerHand";
 import PlayerHand from "../component/playerHand";
 
@@ -187,7 +187,7 @@ const Game = () => {
 								setCanPlay(true);
 								setWinner('');
 								setTurn(turn + 1)
-							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary btn-con text-bg">
 								Continue?
 							</button> <br />
 							<button onClick={() => {
@@ -200,7 +200,7 @@ const Game = () => {
 								setCanPlay(true);
 								setWinner('');
 								setTurn(1)
-							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary text-bg">
+							}} className="text-2xl mx-2 w-64 h-14 rounded-md bg-primary btn-res text-bg">
 								Restart Game
 							</button>
 						</div>
@@ -233,8 +233,8 @@ const Game = () => {
 			return (
 				<>
 					<div >
-						<button onClick={hit} className={`text-3xl w-44 h-14 rounded-md ${canPlay && yourSum < 21 ? 'bg-primary text-bg' : 'bg-shadow text-secondary'} transition-colors`}>hit</button>
-						<button onClick={stay} className={`text-3xl w-20 h-14 ${canPlay && yourSum <= 21 ? 'bg-b-secondary text-bg' : 'bg-shadow text-secondary'} transition-colors rounded-md ml-4`}>stay</button>
+						<button onClick={hit} className={`text-3xl w-44 h-14 btn-con rounded-md ${canPlay && yourSum < 21 ? 'bg-primary text-bg' : 'bg-shadow text-secondary'} transition-colors`}>hit</button>
+						<button onClick={stay} className={`text-3xl w-20 btn-res h-14 ${canPlay && yourSum <= 21 ? 'bg-b-secondary text-bg' : 'bg-shadow text-secondary'} transition-colors rounded-md ml-4`}>stay</button>
 					</div>
 				</>
 			)
@@ -245,7 +245,7 @@ const Game = () => {
 		<>
 			<div className="w-screen h-screen flex flex-col justify-center">
 
-				<div className="flex flex-row items-center justify-center mb-10">
+				<div style={{margin:"20px 0px 0px 20px"}}>
 					<p className="text-5xl">Turn : {turn}</p>
 				</div>
 
@@ -259,18 +259,23 @@ const Game = () => {
 				{/* Coin */}
 				<div className="flex flex-row items-center justify-center gap-44 mt-20">
 					<div className="flex flex-col">
-						<p className="text-6xl mx-5">Dealer</p>
-						<p className="text-6xl mx-5">{dealerCoin}</p>
+						<p className="text-5xl mx-5">Dealer</p>
+						<div className="coinFlex">
+						<img className="coin" src={coinIcon} alt="" />
+						<p className="text-4xl mx-5">{dealerCoin}</p></div>
 					</div>
 					<div className="flex flex-col">
-						<p className="text-6xl mx-5">Player</p>
-						<p className="text-6xl mx-5">{yourCoin }</p>
+						<p className="text-5xl mx-5">Player</p>
+						<div className="coinFlex">
+						<img className="coin" src={coinIcon} alt="" />
+						<p className="text-4xl mx-5">{yourCoin }</p>
+						</div>
 					</div>
 				</div>
 
 				{/* Game Controls */}
 				<div className="flex flex-row justify-center">
-					<div className="mt-20">
+					<div className="mt-5">
 						<div className="w-full h-[6px] rounded-full bg-shadow mb-4 relative">
 							{stopLoading && yourDeck.length > 2 ?
 								(<div className="absolute top-0 bottom-0 bg-primary animate-actionLoader"></div>)

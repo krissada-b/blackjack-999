@@ -7,7 +7,33 @@
   src: url("../assets/fonts/monogram.ttf");
 }
 
+.btn-con{
+  background-color: #d7f7a0;
+  color: black;
+}
+
+.btn-res{
+  background-color: #f7a0a0;
+  color: black;
+}
+
+.coinFlex{
+  display: flex;
+  margin: 0px  1.25rem 0px  1.25rem;
+}
+
+.coin{
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(17deg) brightness(119%) contrast(99%);
+  width: 35px;
+}
+
+.text-primary{
+  color: #d7f7a0 !important;
+}
+
 body {
+  color: #f98595 !important;
+  background-color: #2e3e64 !important;
   @apply bg-bg font-monogram  flex justify-center m-0 p-0
 }
 
