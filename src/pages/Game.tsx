@@ -155,7 +155,6 @@ const Game = () => {
 
   const buildDeck = (deck: Card[]): number => {
     let sum = 0;
-
     for (let index = 0; index < 2; index++) {
       const card = new Card;
       sum = sum + card.value;
@@ -165,16 +164,16 @@ const Game = () => {
   }
 
 	const dealerHit = () => {
-    const randomValue = Math.floor(Math.random() * 13) + 1;
-    if (dealerSum < 16 || randomValue%2 == 0) {
+    if (dealerSum < 16) {
       const card = new Card();
-      const newDeck = dealerDeck;
-      const newSum = dealerSum + card.value;
+			const newDeck = dealerDeck;
       newDeck.push(card);
-
-      setDealerSum(newSum)
-      setDealerDeck(newDeck);
-
+			setDealerDeck(newDeck);
+			var newSum = 0
+			for (let i = 0; i < newDeck.length; i++) {
+				newSum += newDeck[i].props.value
+			}
+			setDealerSum(newSum)
       return true;
     } else {
       return false;
