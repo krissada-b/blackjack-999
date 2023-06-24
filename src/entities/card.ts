@@ -4,7 +4,7 @@ export interface cardProps {
 }
 
 export class Card {
-  private props: cardProps;
+  public props: cardProps;
 
 	get value () {
 		return this.props.value
