@@ -108,7 +108,7 @@ const Game = () => {
     }
   }
 
-  const dealerPlay = () => {
+  const dealerPlay = async () => {
 		if (yourSum === 21 && dealerSum < 21) {
 			if (!dealerHit()) {
 				setYourCoin(yourCoin + 20)
