@@ -13,7 +13,7 @@ const Help = () => {
       <p className="text-2xl leading-4 text-slate-500 mt-4">if you go over 21, you lose, if the dealer has 21 or less and you have less points than the dealer, you lose.</p>
 
 
-      <img src={help1} alt="" />
+      <img src={help1} alt="" className="mt-2" />
 
       <p className="text-2xl leading-4 text-slate-500 mt-8">the numbered cards correspond to their respective value.</p>
       <p className="text-2xl leading-4 text-slate-500 mt-4">the cards with letters, the situation changes a little,
@@ -26,7 +26,7 @@ const Help = () => {
         if you want to take more cards, it may happen that you exceed the score of 21, if that happens you will lose because the dealer will not ask for cards.</p>
       <p className="text-2xl leading-4 text-slate-500 mt-4">but, if you still haven't exceeded, a timer will appear for you to play in up to 6 seconds, if you don't do anything, you will lose your turn (stay).</p>
 
-      <img src={help2} alt="" />
+      <img src={help2} alt="" className="mt-2"/>
 
       <Link className="fixed bottom-10 right-10 flex items-center justify-center text-2xl w-28 h-12 rounded-md bg-primary text-bg" to={'/game'} >Return</Link>
     </div>
