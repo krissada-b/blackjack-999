@@ -25,7 +25,6 @@ const Help = () => {
       		<p className="text-2xl leading-4 text-slate-500 mt-4">but, if you still haven't exceeded, a timer will appear for you to play in up to 6 seconds, if you don't do anything, you will lose your turn (stay).</p>
 				</div>
 				</div>
-
 			</div>
       <Link className="fixed bottom-10 right-10 flex items-center justify-center text-2xl w-28 h-12 rounded-md bg-primary text-bg" to={'/game'} >Return</Link>
     </div>

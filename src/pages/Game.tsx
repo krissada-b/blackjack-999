@@ -111,40 +111,45 @@ const Game = () => {
   const dealerPlay = () => {
 		if (yourSum === 21 && dealerSum < 21) {
 			if (!dealerHit()) {
-				setWinner("you")
 				setYourCoin(yourCoin + 20)
 				setDealerCoin(dealerCoin - 20)
+				setWinner("you")
 			}
     }
-    else if (dealerSum === 21 && yourSum < 21) {
-			setWinner("dealer")
+		else if (dealerSum === 21 && yourSum < 21) {
 			setYourCoin(yourCoin - 20)
 			setDealerCoin(dealerCoin + 20)
+			setWinner("dealer")
+
     }
     else if (dealerSum === 21 && yourSum === 21 || yourSum === dealerSum) {
       dealerHit() ? '' : setWinner("tie");
     }
-    else if (dealerSum > 21 && yourSum < dealerSum) {
-			setWinner("you");
+		else if (dealerSum > 21 && yourSum < dealerSum) {
 			setYourCoin(yourCoin + 20)
 			setDealerCoin(dealerCoin - 20)
+			setWinner("you");
+
     }
-    else if (yourSum > 21 && dealerSum < yourSum) {
-			setWinner("dealer");
+		else if (yourSum > 21 && dealerSum < yourSum) {
 			setYourCoin(yourCoin - 20)
 			setDealerCoin(dealerCoin + 20)
+			setWinner("dealer");
+
     }
     else if (dealerSum < yourSum) {
-      if (!dealerHit()) {
-				setWinner("you")
+			if (!dealerHit()) {
 				setYourCoin(yourCoin + 20)
 				setDealerCoin(dealerCoin - 20)
+				setWinner("you")
+
 			}
     }
-    else if (yourSum < dealerSum) {
-			setWinner("dealer");
+		else if (yourSum < dealerSum) {
 			setYourCoin(yourCoin - 20)
 			setDealerCoin(dealerCoin + 20)
+			setWinner("dealer");
+
     }
   }
 
@@ -159,8 +164,9 @@ const Game = () => {
     return sum;
   }
 
-  const dealerHit = () => {
-    if (dealerSum < 16) {
+	const dealerHit = () => {
+    const randomValue = Math.floor(Math.random() * 13) + 1;
+    if (dealerSum < 16 || randomValue%2 == 0) {
       const card = new Card();
       const newDeck = dealerDeck;
       const newSum = dealerSum + card.value;
@@ -177,7 +183,7 @@ const Game = () => {
 
 	const renderButton = () => {
 		if (winner != '') {
-			if (dealerCoin != 0 || yourCoin != 0) {
+			if (dealerCoin != 0 && yourCoin != 0) {
 				return (
 					<>
 						<div className="flex" >
