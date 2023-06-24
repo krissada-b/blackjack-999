@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "../entities/card";
 import coinIcon from "../assets/coin.svg"
+import s_win from "../assets/status_Win.png"
+import s_loser from "../assets/status_Lose.png"
 import DealerHand from "../component/dealerHand";
 import PlayerHand from "../component/playerHand";
 
@@ -251,7 +253,7 @@ const Game = () => {
 
 				{/* Dealer and Player Hand */}
 				<div className="flex flex-row items-center justify-center">
-					{winner != '' ? <h1 className="text-primary text-6xl absolute -mt-20  z-50 animate-getAlertWinner">{winner} {winner == 'tie' ? '' : 'win'} {winner == 'you' ? ':)' : ':('}</h1> : null}
+					{winner != '' ? <h1 className="text-primary text-6xl absolute -mt-20  z-50 animate-getAlertWinner">{winner} {winner == 'tie' ? '' : 'win'} {winner == 'you' ? <img style={{width:"70px"}} src={s_win}/> : <img style={{width:"70px"}} src={s_loser}/>}</h1> : null}
 					<DealerHand deck={dealerDeck} canPlay={canPlay} winner={winner} playerSum={dealerSum} role="dealerHand" />
 					<PlayerHand deck={yourDeck}  winner={winner} playerSum={yourSum} role="playerHand" />
 				</div>

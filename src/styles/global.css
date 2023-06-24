@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "monogram";
   src: url("../assets/fonts/monogram.ttf");
-}
+} */
 
 .btn-con{
   background-color: #d7f7a0;
@@ -32,6 +33,7 @@
 }
 
 body {
+  font-family: 'Ysabeau SC', sans-serif !important;
   color: #f98595 !important;
   background-color: #2e3e64 !important;
   @apply bg-bg font-monogram  flex justify-center m-0 p-0
